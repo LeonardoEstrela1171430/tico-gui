@@ -5702,13 +5702,13 @@ webvowl.app = /******/ (function (modules) {
           ) {
             stopTimer = false;
             timedLoadingStatusLogger();
-
+debugger;
             var formData = new FormData();
             formData.append("ontology", selectedFile);
             formData.append("sessionId", local_threadId);
             var xhr = new XMLHttpRequest();
 
-            xhr.open("POST", "convert", true);
+            xhr.open("POST", "http://localhost:8080/convert", true);
             xhr.onload = function () {
               clearTimeout(loadingStatusTimer);
               stopTimer = true;
@@ -10310,7 +10310,7 @@ webvowl.app = /******/ (function (modules) {
 
             //retrieve from backend
 
-            fetch("http://localhost:8080/" + 1)
+            fetch("http://localhost:8081/" + 1)
               .then(async function (response) {
                 // The API call was successful!
                 debugger;
@@ -10439,7 +10439,7 @@ webvowl.app = /******/ (function (modules) {
             formData.append("ontology", file);
 
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "convert", true);
+            xhr.open("POST", "http://localhost:8080/convert", true);
             var ontologyContent = "";
             xhr.onload = function () {
               if (xhr.status === 200) {
@@ -10506,7 +10506,7 @@ webvowl.app = /******/ (function (modules) {
 
           function requestServerTimeStamp(callback, parameterArray) {
             d3.xhr(
-              "serverTimeStamp",
+              "http://localhost:8080/serverTimeStamp",
               "application/text",
               function (error, request) {
                 if (error) {
@@ -10674,6 +10674,7 @@ webvowl.app = /******/ (function (modules) {
           /** -- PARSE JSON CONTENT -- **/
           function parseOntologyContent(content) {
             console.log("parseOntologyContent");
+            debugger;
 
             ontologyMenu.append_bulletPoint("Reading ontology graph ... ");
             var _loader = ontologyMenu.getLoadingFunction();
