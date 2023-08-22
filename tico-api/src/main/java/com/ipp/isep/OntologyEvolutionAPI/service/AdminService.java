@@ -28,6 +28,8 @@ public class AdminService {
     public String ontologiesDataset;
     @Value("${INSTANCES_DATASET}")
     public String instancesDataset;
+    @Value("${VIEWER_DATASET}")
+    public String viewerDataset;
 
     @EventListener(ApplicationReadyEvent.class)
     public void setupFusekiDatasets() throws IOException {
@@ -37,9 +39,11 @@ public class AdminService {
 
         URL postOntologiesDataset = new URL(fusekiURL + "/$/datasets?dbName=" + ontologiesDataset + "&dbType=tdb");
         URL postInstancesDataset = new URL(fusekiURL + "/$/datasets?dbName=" + instancesDataset + "&dbType=tdb");
+        URL postViewerDataset = new URL(fusekiURL + "/$/datasets?dbName=" + viewerDataset + "&dbType=tdb");
 
         URL getOntologiesDataset = new URL(fusekiURL + "/$/datasets/" + ontologiesDataset);
         URL getInstancesDataset = new URL(fusekiURL + "/$/datasets/" + instancesDataset);
+        URL getVersionsDataset = new URL(fusekiURL + "/$/datasets/" + viewerDataset);
 
         HttpURLConnection conGetOntologies = (HttpURLConnection) getOntologiesDataset.openConnection();
         conGetOntologies.setRequestProperty("Authorization", authHeaderValue);
@@ -51,7 +55,12 @@ public class AdminService {
         conGetInstances.setRequestMethod("GET");
         Integer codeInstances = conGetOntologies.getResponseCode();
 
-        if(codeInstances == 500 || codeOntologies == 500){
+        HttpURLConnection conGetViewer = (HttpURLConnection) getVersionsDataset.openConnection();
+        conGetViewer.setRequestProperty("Authorization", authHeaderValue);
+        conGetViewer.setRequestMethod("GET");
+        Integer codeViewer = conGetViewer.getResponseCode();
+
+        if(codeInstances == 500 || codeOntologies == 500 || codeViewer == 500){
             logger.error("An internal Fuseki error has occurred, while trying to fetch the datasets. Check Fuseki's logs in order to better understand the problem.");
         }
 
@@ -76,6 +85,18 @@ public class AdminService {
                 logger.error("Successfully created Instances dataset.");
             }else {
                 logger.error("An internal Fuseki error has occurred, while trying to create Instances dataset. Check Fuseki's logs in order to better understand the problem.");
+            }
+        }
+
+        if(codeViewer == 404){
+            HttpURLConnection conPostViewer = (HttpURLConnection) postViewerDataset.openConnection();
+            conPostViewer.setRequestProperty("Authorization", authHeaderValue);
+            conPostViewer.setRequestMethod("POST");
+            Integer codeViewerPost = conPostViewer.getResponseCode();
+            if(codeViewerPost == 200){
+                logger.error("Successfully created Versions dataset.");
+            }else {
+                logger.error("An internal Fuseki error has occurred, while trying to create Ontologies dataset. Check Fuseki's logs in order to better understand the problem.");
             }
         }
     }

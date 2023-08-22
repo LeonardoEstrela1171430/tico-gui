@@ -1,5 +1,6 @@
 package com.ipp.isep.OntologyEvolutionAPI.controller;
 
+import com.ipp.isep.OntologyEvolutionAPI.dto.CreateOntologyDTO;
 import com.ipp.isep.OntologyEvolutionAPI.service.OntologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,15 +28,15 @@ public class OntologyController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/{IRI}")
-    public String createOntology(@PathVariable String IRI, @RequestBody String file) throws IOException {
+    public String createOntology(@PathVariable String IRI, @RequestBody CreateOntologyDTO file) throws IOException {
         ontologyService.createOntology(IRI, file);
         return "great success";
     }
 
-/*    @CrossOrigin(origins = "http://localhost:3000")
-    @PutMapping("/{id}")
-    public String createOntologyVersion(@PathVariable Integer id) throws IOException {
-
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping("/{IRI}")
+    public String createOntologyVersion(@PathVariable String IRI, @RequestBody CreateOntologyDTO file) throws IOException {
+        ontologyService.createOntologyVersion(IRI, file);
         return myOntology;
     }
 
@@ -44,7 +45,7 @@ public class OntologyController {
     public String deleteOntology(@PathVariable Integer id) throws IOException {
 
         return myOntology;
-    }*/
+    }
 
 
 }
