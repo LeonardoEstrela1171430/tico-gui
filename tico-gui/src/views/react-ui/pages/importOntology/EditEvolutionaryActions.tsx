@@ -2,8 +2,8 @@ import { useState } from "react";
 import EvolutionaryActionDTO from "../../dto/EvolutionaryActionDTO";
 import { Box, Button, Center, Checkbox, Heading, Input } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
-import OntologyService from "../../services/OntologyService";
-import LoadingPage from "../loadingPage";
+import OntologyService from "../services/OntologyService";
+import LoadingPage from "../../modules/loadingPage";
 
 interface LocationState {
     ontology: string,

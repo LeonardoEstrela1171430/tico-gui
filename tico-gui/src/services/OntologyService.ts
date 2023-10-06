@@ -1,8 +1,17 @@
+import SimpleOntologyDTO from "../domain/dto/SimpleOntologyDTO";
 import axios from "axios";
-import EvolutionaryActionDTO from "../dto/EvolutionaryActionDTO";
+import EvolutionaryActionDTO from "../views/react-ui/dto/EvolutionaryActionDTO";
 
 export default class OntologyService {
     
+    public static async getOntologies(): Promise<SimpleOntologyDTO[]> {
+        return axios.get("http://localhost:8081/ontologies"
+        ).then(function (response) {
+            const actualReturn = response.data;
+            return actualReturn.ontologies;
+        })
+    }
+
     public static async getEvolutionaryActions(
         ontology: string,
         instances: string
@@ -39,5 +48,5 @@ export default class OntologyService {
           return actualReturn;
         });
   }
-    
 }
+

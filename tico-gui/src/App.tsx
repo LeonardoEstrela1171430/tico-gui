@@ -1,15 +1,13 @@
 import { BrowserRouter as Router, Link, Routes , Route } from 'react-router-dom';
 import Home from './views/react-ui/Home';
-import WorkSpace from './views/react-ui/Workspace';
-import ChooseOntology from './views/react-ui/modules/choose/ChooseOntology';
-import ImportOntology from './views/react-ui/modules/importOntology/ImportOntology';
+import ChooseOntology from './views/react-ui/pages/choose/ChooseOntology';
+import ImportOntology from './views/react-ui/pages/importOntology/ImportOntology';
 import './index.css';
-import EditEvolutionaryActions from './views/react-ui/modules/importOntology/EditEvolutionaryActions';
+import EditEvolutionaryActions from './views/react-ui/pages/importOntology/EditEvolutionaryActions';
 import { ChakraProvider } from '@chakra-ui/react'
-import Wrapper from './views/webvowl/Wrapper';
-import EvolutionVisualization from './views/react-ui/modules/viewer/EvolutionVisualization';
-import NavBar from './views/components/navbar/Navbar';
-import LargeVisualization from './views/react-ui/modules/viewer/LargeVisualization';
+import EvolutionVisualization from './views/react-ui/pages/viewer/EvolutionVisualization';
+import NavBar from './views/react-ui/modules/Navbar';
+import LargeVisualization from './views/react-ui/pages/viewer/LargeVisualization';
 
 function App() {
   
@@ -30,7 +28,6 @@ function App() {
             </Routes >
           </div>
         </Router>   
-        {/* <iframe src='/webvowl/index.html' height={"700px"} width={"1000px"} /> */}
       </div>
     </ChakraProvider>
   );

@@ -1,8 +1,8 @@
 import { Button, Heading, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import OntologyService from "../../services/OntologyService";
-import LoadingPage from "../loadingPage";
+import OntologyService from "../../../../services/OntologyService";
+import LoadingPage from "../../modules/loadingPage";
 
 function ImportOntology() {
     const [ontologyName, setOntologyName] = useState<string>("");
