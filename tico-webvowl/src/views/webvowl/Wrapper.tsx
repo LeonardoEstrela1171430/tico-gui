@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
-import './Wrapper.css';
 import '../../webvowl/css/webvowl.css'
 import '../../webvowl/css/webvowl.app.css'
 import '../../webvowl/js/d3.min.js'
 import '../../webvowl/js/webvowl.js'
 import '../../webvowl/js/webvowl.app.js'
-import ScriptTag from 'react-script-tag';
-
 
 function Wrapper() {
 

@@ -1,0 +1,15 @@
+@startuml
+start
+
+:Receives ontology and instance files;
+
+if (Can generate Evolutionary Actions?) then (yes)
+  :Executes them;
+else (no)
+  :Does nothing;
+endif
+
+:Returns resulting Ontology;
+
+stop
+@enduml

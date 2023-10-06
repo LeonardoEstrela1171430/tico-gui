@@ -1,0 +1,546 @@
+@prefix : <http://www.example.org/Pianism/OntoPianismIndividuals.owl#> .
+@prefix j.0: <http://www.semanticweb.org/katiaaleid(1181473)/ontologies/2019/10/ontology-extension#> .
+@prefix j.1: <http://www.example.org/Pianism/OntoPianismERP.owl#> .
+@prefix j.2: <http://purl.oclc.org/NET/ssnx/ssn#> .
+@prefix j.3: <http://www.w3.org/2006/time#> .
+@prefix j.4: <http://www.loa-cnr.it/ontologies/DUL.owl#> .
+@prefix j.5: <http://www.w3.org/ns/ssn/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix CM_ontology: <http://www.example.org/CM/CM_ontology.owl#> .
+@prefix OntoPianismERP: <http://www.example.org/Pianism/OntoPianismERP.owl#> .
+@prefix sensors4ExtruOnt: <http://bdi.si.ehu.es/bdi/ontologies/ExtruOnt/sensors4ExtruOnt#> .
+@prefix components4ExtruOnt: <http://bdi.si.ehu.es/bdi/ontologies/ExtruOnt/components4ExtruOnt#> .
+@prefix OntoPianismIndividuals: <http://www.example.org/Pianism/OntoPianismIndividuals.owl#> .
+@base <http://www.example.org/Pianism/OntoPianismIndividuals.owl#> .
+
+<http://www.example.org/Pianism/OntoPianismIndividuals.owl> rdf:type owl:Ontology ;
+                                                             owl:versionIRI <http://www.example.org/Pianism/OntoPianismIndividuals.owl/0.0.1> ;
+                                                             owl:imports <http://www.w3.org/2006/time#2016> ;
+                                                             rdfs:comment "Ontology providing information about Pianism ERP Individuals collected form the extrusion manufacturing process."@en ;
+                                                             rdfs:creator "Armando Jorge Ventura Nobre" ;
+                                                             rdfs:dateCreated "2021-07-17" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.w3.org/2000/01/rdf-schema#creator
+rdfs:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2000/01/rdf-schema#dateCreated
+rdfs:dateCreated rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://bdi.si.ehu.es/bdi/ontologies/ExtruOnt/components4ExtruOnt#hasHead
+components4ExtruOnt:hasHead rdf:type owl:ObjectProperty .
+
+
+###  http://bdi.si.ehu.es/bdi/ontologies/ExtruOnt/components4ExtruOnt#hasSensor
+components4ExtruOnt:hasSensor rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#derivedFrom
+OntoPianismERP:derivedFrom rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#detects
+OntoPianismERP:detects rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpInterventionTime
+OntoPianismERP:erpInterventionTime rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpOccurred
+OntoPianismERP:erpOccurred rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpOperationFromOrder
+OntoPianismERP:erpOperationFromOrder rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpRequestDate
+OntoPianismERP:erpRequestDate rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpResolutionTime
+OntoPianismERP:erpResolutionTime rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#hasOutput
+OntoPianismERP:hasOutput rdf:type owl:ObjectProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#hasSensorCorrelation
+OntoPianismERP:hasSensorCorrelation rdf:type owl:ObjectProperty .
+
+
+###  http://www.loa-cnr.it/ontologies/DUL.owl#includesEvent
+j.4:includesEvent rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2006/time#after
+j.3:after rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2006/time#before
+j.3:before rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2006/time#hasBeginning
+j.3:hasBeginning rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2006/time#hasEnd
+j.3:hasEnd rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/2006/time#intervalDuring
+j.3:intervalDuring rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://bdi.si.ehu.es/bdi/ontologies/ExtruOnt/sensors4ExtruOnt#sensorName
+sensors4ExtruOnt:sensorName rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/CM/CM_ontology.owl#hasSensorID
+CM_ontology:hasSensorID rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/CM/CM_ontology.owl#hasTimeStamp
+CM_ontology:hasTimeStamp rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpAmountHarnessed
+OntoPianismERP:erpAmountHarnessed rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpArticleCode
+OntoPianismERP:erpArticleCode rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpExecuter
+OntoPianismERP:erpExecuter rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpExtruderHeadName
+OntoPianismERP:erpExtruderHeadName rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpHeads
+OntoPianismERP:erpHeads rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpJobDescription
+OntoPianismERP:erpJobDescription rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpMachineCode
+OntoPianismERP:erpMachineCode rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpMachineName
+OntoPianismERP:erpMachineName rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpOrderCode
+OntoPianismERP:erpOrderCode rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpQuantity
+OntoPianismERP:erpQuantity rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpRejectedQuantity
+OntoPianismERP:erpRejectedQuantity rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpRequestJobDescription
+OntoPianismERP:erpRequestJobDescription rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpSection
+OntoPianismERP:erpSection rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#erpSeries
+OntoPianismERP:erpSeries rdf:type owl:DatatypeProperty .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#hasValue
+OntoPianismERP:hasValue rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/katiaaleid(1181473)/ontologies/2019/10/ontology-extension#extHasStatus
+j.0:extHasStatus rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2006/time#Duration
+j.3:Duration rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2006/time#hasBeginning
+j.3:hasBeginning rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/2006/time#hasEnd
+j.3:hasEnd rdf:type owl:DatatypeProperty .
+
+
+###  http://www.w3.org/ns/ssn/hasOutput
+j.5:hasOutput rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://bdi.si.ehu.es/bdi/ontologies/ExtruOnt/components4ExtruOnt#ExtrusionHead
+components4ExtruOnt:ExtrusionHead rdf:type owl:Class .
+
+
+###  http://bdi.si.ehu.es/bdi/ontologies/ExtruOnt/sensors4ExtruOnt#Sensor
+sensors4ExtruOnt:Sensor rdf:type owl:Class .
+
+
+###  http://purl.oclc.org/NET/ssnx/ssn#Sensor
+j.2:Sensor rdf:type owl:Class .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#Extruder
+OntoPianismERP:Extruder rdf:type owl:Class .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#ManufacturingOperation
+OntoPianismERP:ManufacturingOperation rdf:type owl:Class .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#ManufacturingOrder
+OntoPianismERP:ManufacturingOrder rdf:type owl:Class .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#Occurrence
+OntoPianismERP:Occurrence rdf:type owl:Class .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#VirtualEvent
+OntoPianismERP:VirtualEvent rdf:type owl:Class .
+
+
+###  http://www.example.org/Pianism/OntoPianismERP.owl#VirtualSensor
+OntoPianismERP:VirtualSensor rdf:type owl:Class ;
+                             rdfs:subClassOf sensors4ExtruOnt:Sensor .
+
+
+###  http://www.semanticweb.org/katiaaleid(1181473)/ontologies/2019/10/ontology-extension#extEvent
+j.0:extEvent rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#DateTimeInterval
+j.3:DateTimeInterval rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#Instant
+j.3:Instant rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_00612697-be3e-3586-a0f2-4b1020d16fac
+OntoPianismIndividuals:erpEvent_00612697-be3e-3586-a0f2-4b1020d16fac rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_ab92fe0f-89f7-30f1-86a4-a4626546eaa3 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_52492c9d-d08c-34b7-bf55-75bc4fe8c068 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_014649de-c323-3c07-8f0c-d72209828845 ;
+                                                                     j.5:hasOutput "198.0" ;
+                                                                     rdfs:label "erpEvent_00612697-be3e-3586-a0f2-4b1020d16fac" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_006f3bb6-06a4-3576-8aa1-9bbb9a3f7560
+OntoPianismIndividuals:erpEvent_006f3bb6-06a4-3576-8aa1-9bbb9a3f7560 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     OntoPianismERP:hasSensorCorrelation OntoPianismIndividuals:feedRate_006f3bb6-06a4-3576-8aa1-9bbb9a3f7560 ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_319dba73-8915-3530-b9e8-70e80da736a0 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_27b1f56b-fa15-376b-aa41-4817982e725d ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_518745d8-8637-3392-af22-3787ba79f2b2 ;
+                                                                     j.5:hasOutput "1.787231" ;
+                                                                     rdfs:label "erpEvent_006f3bb6-06a4-3576-8aa1-9bbb9a3f7560" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_00956f0d-f458-39e8-90c4-6bc11cb78427
+OntoPianismIndividuals:erpEvent_00956f0d-f458-39e8-90c4-6bc11cb78427 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_26e0ec82-ab41-3fec-9c85-afd8e7a2a5b9 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_fe624bae-056b-39c7-81fb-d92f96f38174 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_6cc44582-c5dd-384c-bc9d-dfa2c57ed734 ;
+                                                                     j.5:hasOutput "49.0" ;
+                                                                     rdfs:label "erpEvent_00956f0d-f458-39e8-90c4-6bc11cb78427" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_00a52105-bd32-3ebe-8c89-a2cbad24a8c9
+OntoPianismIndividuals:erpEvent_00a52105-bd32-3ebe-8c89-a2cbad24a8c9 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_bfb29887-4e47-3229-92b3-4a453b69ce11 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_d0d4022f-a34c-3a16-b20f-e096de8bc8c1 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_4db45d7c-cec2-3ea3-bed3-744b07f9a5cd ;
+                                                                     j.5:hasOutput "49.0" ;
+                                                                     rdfs:label "erpEvent_00a52105-bd32-3ebe-8c89-a2cbad24a8c9" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_00a97af8-f8fe-3d8b-b356-a4f72b3aad5a
+OntoPianismIndividuals:erpEvent_00a97af8-f8fe-3d8b-b356-a4f72b3aad5a rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     OntoPianismERP:hasSensorCorrelation OntoPianismIndividuals:feedRate_00a97af8-f8fe-3d8b-b356-a4f72b3aad5a ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_668fc2ad-9cf0-3f0b-9c50-3e6538bb4c0b ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_7fcf4ee0-249b-394d-8407-b8ac5f3fa73e ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_072f2300-dc75-3d14-b2a0-91758a7a9592 ;
+                                                                     j.5:hasOutput "1.787231" ;
+                                                                     rdfs:label "erpEvent_00a97af8-f8fe-3d8b-b356-a4f72b3aad5a" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_00b30825-9e27-3dfd-acd2-4f5a6f163393
+OntoPianismIndividuals:erpEvent_00b30825-9e27-3dfd-acd2-4f5a6f163393 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_ab92fe0f-89f7-30f1-86a4-a4626546eaa3 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_52492c9d-d08c-34b7-bf55-75bc4fe8c068 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_014649de-c323-3c07-8f0c-d72209828845 ;
+                                                                     j.5:hasOutput "44.98" ;
+                                                                     rdfs:label "erpEvent_00b30825-9e27-3dfd-acd2-4f5a6f163393" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_00c9fbd7-9f5e-33d4-99da-2f6905508939
+OntoPianismIndividuals:erpEvent_00c9fbd7-9f5e-33d4-99da-2f6905508939 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     OntoPianismERP:hasSensorCorrelation OntoPianismIndividuals:feedRate_00c9fbd7-9f5e-33d4-99da-2f6905508939 ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_288783b3-5944-3c5b-98b8-8322e71d08af ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_fbb1ad64-f996-32ed-9e3f-59ab5304d3f1 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_9b00ae95-4e19-3f7a-a6ef-9254a4f97577 ;
+                                                                     j.5:hasOutput "1.787231" ;
+                                                                     rdfs:label "erpEvent_00c9fbd7-9f5e-33d4-99da-2f6905508939" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_00d1d7b6-4229-3c3f-a23d-8cc9b9bce21e
+OntoPianismIndividuals:erpEvent_00d1d7b6-4229-3c3f-a23d-8cc9b9bce21e rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     OntoPianismERP:hasSensorCorrelation OntoPianismIndividuals:feedRate_00d1d7b6-4229-3c3f-a23d-8cc9b9bce21e ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_0845d832-6cd6-3997-afd4-35970024686d ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_61223d71-c55d-3030-b30e-fd36113e5fe9 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_b8e6bf53-65d7-329c-b2fd-93ff814362e0 ;
+                                                                     j.5:hasOutput "1.787231" ;
+                                                                     rdfs:label "erpEvent_00d1d7b6-4229-3c3f-a23d-8cc9b9bce21e" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_00d4fab0-e28c-358c-acab-ea60d35035d2
+OntoPianismIndividuals:erpEvent_00d4fab0-e28c-358c-acab-ea60d35035d2 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     OntoPianismERP:hasSensorCorrelation OntoPianismIndividuals:feedRate_00d4fab0-e28c-358c-acab-ea60d35035d2 ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_9f2ad18c-36e6-3078-bf85-4b1f10e8cfc2 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_dd0bd79c-71d0-3173-ad83-c7673732a514 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_f0fff6d3-574a-3502-8980-dd730dea80ec ;
+                                                                     j.5:hasOutput "1.787231" ;
+                                                                     rdfs:label "erpEvent_00d4fab0-e28c-358c-acab-ea60d35035d2" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_00f27166-b54f-39bd-b8cc-d8bb73c74811
+OntoPianismIndividuals:erpEvent_00f27166-b54f-39bd-b8cc-d8bb73c74811 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     OntoPianismERP:hasSensorCorrelation OntoPianismIndividuals:feedRate_00f27166-b54f-39bd-b8cc-d8bb73c74811 ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_f058a7d4-2ac2-3b17-b171-ef91e9135e12 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_c8e5417e-2805-3897-b5d9-7ef9541a8fef ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_d3a22661-ac42-381f-8873-10b87679ab06 ;
+                                                                     j.5:hasOutput "1.787231" ;
+                                                                     rdfs:label "erpEvent_00f27166-b54f-39bd-b8cc-d8bb73c74811" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_00f8f2c0-4728-3879-82b0-213a6fbdf2ba
+OntoPianismIndividuals:erpEvent_00f8f2c0-4728-3879-82b0-213a6fbdf2ba rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_f666da9b-6def-3962-ba7c-0836bdf23225 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_16e98814-551b-3304-8c54-5cfdb34ec4d9 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_f8b8b89e-cc90-3c9e-8bac-3357adc3ba31 ;
+                                                                     j.5:hasOutput "49.0" ;
+                                                                     rdfs:label "erpEvent_00f8f2c0-4728-3879-82b0-213a6fbdf2ba" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_01263a88-a004-3eac-a085-811614e18e70
+OntoPianismIndividuals:erpEvent_01263a88-a004-3eac-a085-811614e18e70 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_7d054f33-c8a2-371e-93b5-60c70213c3b4 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_c5dcdd1c-ec7c-3531-b685-8110fedaecb3 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_1eb566ad-c193-3e58-a641-cf344163f1b7 ;
+                                                                     j.5:hasOutput "39.82666666666666" ;
+                                                                     rdfs:label "erpEvent_01263a88-a004-3eac-a085-811614e18e70" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_0152f784-49a4-30ca-8eb5-13bbed4d7c14
+OntoPianismIndividuals:erpEvent_0152f784-49a4-30ca-8eb5-13bbed4d7c14 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     OntoPianismERP:hasSensorCorrelation OntoPianismIndividuals:feedRate_0152f784-49a4-30ca-8eb5-13bbed4d7c14 ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_b06d06ea-1de8-34f5-8b86-f832ea04370f ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_4158c36c-0978-305c-856d-8ce9cd285e33 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_92b0bacf-0fd0-3c3a-9572-13ff9c91f66b ;
+                                                                     j.5:hasOutput "1.787231" ;
+                                                                     rdfs:label "erpEvent_0152f784-49a4-30ca-8eb5-13bbed4d7c14" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_016a3379-b987-33fe-b4fc-2ccd39007a95
+OntoPianismIndividuals:erpEvent_016a3379-b987-33fe-b4fc-2ccd39007a95 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_cbd8e3d9-f93b-3bf0-aad8-afa6b45735ef ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_c763bc7b-049a-3bf6-a7b7-8192897ee072 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_018a8996-c892-3594-9410-0f4de20bf85d ;
+                                                                     j.5:hasOutput "49.0" ;
+                                                                     rdfs:label "erpEvent_016a3379-b987-33fe-b4fc-2ccd39007a95" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_016e817e-7c78-32e9-8a95-8232b265660a
+OntoPianismIndividuals:erpEvent_016e817e-7c78-32e9-8a95-8232b265660a rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_d9665361-043b-37f1-a8de-b32804cbc66f ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_4ec022d4-5749-3dec-b22e-e1f382efbb79 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_7fe6f48c-0ced-39a8-9c0a-e09e8a00e018 ;
+                                                                     j.5:hasOutput "49.0" ;
+                                                                     rdfs:label "erpEvent_016e817e-7c78-32e9-8a95-8232b265660a" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_018b317a-7903-3fdc-b544-cdd65fe0b105
+OntoPianismIndividuals:erpEvent_018b317a-7903-3fdc-b544-cdd65fe0b105 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_c7849a27-4ae4-3ea1-bd2e-82c641281451 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_560fd825-67a2-3ee3-801b-63d441d444fa ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_fa55c727-9464-3e84-82a4-f412c513af9a ;
+                                                                     j.5:hasOutput "198.0" ;
+                                                                     rdfs:label "erpEvent_018b317a-7903-3fdc-b544-cdd65fe0b105" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_01a2775e-f24d-3993-b040-025c94bbb585
+OntoPianismIndividuals:erpEvent_01a2775e-f24d-3993-b040-025c94bbb585 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_52a72cad-bc7b-32bf-bf94-ac3c62d29b71 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_19db0392-80d3-3f8a-8787-a1a024f132d2 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_a0c5ecbf-c4ae-32de-aa27-d06dcabd595b ;
+                                                                     j.5:hasOutput "44.595833333333324" ;
+                                                                     rdfs:label "erpEvent_01a2775e-f24d-3993-b040-025c94bbb585" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_01a4d390-7b76-3a68-95e6-e726fb965d08
+OntoPianismIndividuals:erpEvent_01a4d390-7b76-3a68-95e6-e726fb965d08 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_41dc916e-90da-3da1-854a-a10a7479164d ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_97ff10d6-2217-39b5-bebb-a3e19d8a1207 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_ff5393f8-5a38-3706-97b4-660ed66fd70a ;
+                                                                     j.5:hasOutput "198.0" ;
+                                                                     rdfs:label "erpEvent_01a4d390-7b76-3a68-95e6-e726fb965d08" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_01b7c92c-b639-35e7-84ca-a37244f7b560
+OntoPianismIndividuals:erpEvent_01b7c92c-b639-35e7-84ca-a37244f7b560 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_2694978a-26a2-34e6-88d9-7a13fb43fe1f ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_55b027e8-4872-32e0-a6d1-0c3ee6c45b87 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_f9a57df8-0d9a-384d-8e75-c3536acf547c ;
+                                                                     j.5:hasOutput "198.0" ;
+                                                                     rdfs:label "erpEvent_01b7c92c-b639-35e7-84ca-a37244f7b560" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_01dd9592-b557-38a6-91b1-502c93e645be
+OntoPianismIndividuals:erpEvent_01dd9592-b557-38a6-91b1-502c93e645be rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_ce83c984-5dc0-38fd-b639-7f1aa997880b ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_2c21de0e-cb03-34b7-91fe-1d8d41bfb947 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_b8eaa078-bb73-34e0-a3d5-711bdff76ac7 ;
+                                                                     j.5:hasOutput "45.3075" ;
+                                                                     rdfs:label "erpEvent_01dd9592-b557-38a6-91b1-502c93e645be" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_01eb8d04-8f5c-3ab0-83c7-c56b88d9316a
+OntoPianismIndividuals:erpEvent_01eb8d04-8f5c-3ab0-83c7-c56b88d9316a rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_ae4ea64b-cb49-3170-8c56-806e3a1c71c5 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_60d248e5-2084-35e8-af9c-711e21a3c1e8 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_e8be0d22-53c1-345c-9dee-b7cd7933caf0 ;
+                                                                     j.5:hasOutput "60.45776" ;
+                                                                     rdfs:label "erpEvent_01eb8d04-8f5c-3ab0-83c7-c56b88d9316a" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_01eecc7b-1523-36eb-98c6-865512f06924
+OntoPianismIndividuals:erpEvent_01eecc7b-1523-36eb-98c6-865512f06924 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_1322c9e7-5b35-3804-a64e-57a2417a3bfc ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_4e01ea5e-23bc-386a-b491-38315a796153 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_eee7a1e3-691e-3025-a31b-12bdf70ed8ef ;
+                                                                     j.5:hasOutput "198.0" ;
+                                                                     rdfs:label "erpEvent_01eecc7b-1523-36eb-98c6-865512f06924" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_0203bdc0-228e-301b-89ef-c8b4c9582fb1
+OntoPianismIndividuals:erpEvent_0203bdc0-228e-301b-89ef-c8b4c9582fb1 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_0356244a-f0a8-3b5d-96e1-0a85385b99a5 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_5ed0e7b3-3aa3-394d-8bfd-0143b6599329 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_51a8cedd-c0b7-3148-9f1d-e7b9daa81f4a ;
+                                                                     j.5:hasOutput "45.27250000000001" ;
+                                                                     rdfs:label "erpEvent_0203bdc0-228e-301b-89ef-c8b4c9582fb1" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_02156a3d-48d8-3a98-8e98-d75268afb0c7
+OntoPianismIndividuals:erpEvent_02156a3d-48d8-3a98-8e98-d75268afb0c7 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     OntoPianismERP:hasSensorCorrelation OntoPianismIndividuals:feedRate_02156a3d-48d8-3a98-8e98-d75268afb0c7 ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_013910f9-9018-378b-85f0-c52f8c6b5279 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_44571a97-24fe-3593-9e65-4414dfd56d8e ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_1b784b8f-0e7b-3562-9e68-693a5fcd33aa ;
+                                                                     j.5:hasOutput "1.787231" ;
+                                                                     rdfs:label "erpEvent_02156a3d-48d8-3a98-8e98-d75268afb0c7" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_0245e8c9-6cae-3621-9c42-ab49e96edb4a
+OntoPianismIndividuals:erpEvent_0245e8c9-6cae-3621-9c42-ab49e96edb4a rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_3efe737d-cb39-349f-abfc-fc5c15ba94cb ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_814d05ab-261e-341c-8d30-eaee3c3d481d ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_34436f30-84fc-3c85-81fe-8cd5d9f315df ;
+                                                                     j.5:hasOutput "60.45776" ;
+                                                                     rdfs:label "erpEvent_0245e8c9-6cae-3621-9c42-ab49e96edb4a" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_02625fd1-738e-353d-a5da-6961694e8e31
+OntoPianismIndividuals:erpEvent_02625fd1-738e-353d-a5da-6961694e8e31 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     OntoPianismERP:hasSensorCorrelation OntoPianismIndividuals:feedRate_02625fd1-738e-353d-a5da-6961694e8e31 ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_77bfabb7-bad7-3968-ab9a-b9b404c1a15d ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_445e9a3c-d5e8-3fb1-b955-395e573355d4 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_b69f701e-7eb3-30cd-af70-7baff296e983 ;
+                                                                     j.5:hasOutput "1.787231" ;
+                                                                     rdfs:label "erpEvent_02625fd1-738e-353d-a5da-6961694e8e31" .
+
+
+###  http://www.example.org/Pianism/OntoPianismIndividuals.owl#erpEvent_0284a066-376e-3f43-a54b-9f4368962c04
+OntoPianismIndividuals:erpEvent_0284a066-376e-3f43-a54b-9f4368962c04 rdf:type owl:NamedIndividual ,
+                                                                              j.0:extEvent ;
+                                                                     OntoPianismERP:hasSensorCorrelation OntoPianismIndividuals:feedRate_0284a066-376e-3f43-a54b-9f4368962c04 ;
+                                                                     j.3:after OntoPianismIndividuals:erpTimeInstant_bdb40f28-ccd5-3bcb-a4ac-ffedca893ee8 ;
+                                                                     j.3:before OntoPianismIndividuals:erpTimeInstant_2c5d8657-1d73-3ad2-99e9-7b2deeddc9e2 ;
+                                                                     j.3:intervalDuring OntoPianismIndividuals:erpTimeInterval_d74039e9-716e-3f20-8291-0eb357609200 ;
+                                                                     j.5:hasOutput "1.787231" ;
+                                                                     rdfs:label "erpEvent_0284a066-376e-3f43-a54b-9f4368962c04" .
+
+
+
+
+

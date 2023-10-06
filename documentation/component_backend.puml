@@ -1,0 +1,11 @@
+@startuml
+
+node TICO-API {
+    folder Controller
+
+    folder Service
+
+    folder Dto 
+}
+
+@enduml

@@ -1,18 +1,23 @@
+import { Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function Home() {
   
   return (
-    <div className="Home">
-        Hello this is home
-
+    <div className="base-ui workspace">
+        <Heading as='h1' size='4xl' noOfLines={1}>TICO-GUI</Heading>
+        <br></br>
         <Link 
-          to="/workspace?id=1"
+            to="/load"
         >
-          teste
-          </Link>
-
-        
+            Load Ontology
+        </Link>
+        <br></br>
+        <Link 
+            to="/import"
+        >
+            Import Ontology
+        </Link>
     </div>
   );
 }

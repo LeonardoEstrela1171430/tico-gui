@@ -1,0 +1,12 @@
+@startuml
+:User: --> (Use)
+:User: --> (Use2)
+:User: --> (Use3)
+:User: --> (Use4)
+
+"Submit ontology information" as (Use)
+"Edit Evolutionary Actions" as (Use2)
+"Visualize ontology" as (Use3)
+"List all Ontologies" as (Use4)
+
+@enduml

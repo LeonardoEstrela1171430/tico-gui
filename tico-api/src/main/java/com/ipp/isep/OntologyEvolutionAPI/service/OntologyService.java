@@ -1,119 +1,100 @@
 package com.ipp.isep.OntologyEvolutionAPI.service;
 
 import com.ipp.isep.OntologyEvolutionAPI.dto.CreateOntologyDTO;
-import org.apache.commons.text.StringEscapeUtils;
-import org.apache.jena.rdfconnection.RDFConnection;
-import org.apache.jena.rdfconnection.RDFConnectionRemote;
-import org.apache.jena.update.UpdateFactory;
-import org.apache.jena.update.UpdateRequest;
+import com.ipp.isep.OntologyEvolutionAPI.dto.GetEvolutionaryActionsDTO;
+import com.ipp.isep.OntologyEvolutionAPI.dto.GetOntologyDTO;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.tomcat.util.json.JSONParser;
+import org.apache.tomcat.util.json.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.atomic.AtomicReference;
+import java.io.*;
+import java.net.*;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 @Component
 public class OntologyService {
-    public String fusekiURL;
-    public String ontologiesDataset;
-    public String instancesDataset;
+    public String ticoURL;
     public String frontendPort;
-    public String fusekiUser;
-    public String fusekiPassword;
-    public String viewerDataset;
+    public String owl2vowlURL;
 
-    public OntologyService(@Value("${FUSEKI_URL}") String fusekiURL,
-                             @Value("${ONTOLOGIES_DATASET}") String ontologiesDataset,
-                             @Value("${INSTANCES_DATASET}") String instancesDataset,
-                             @Value("${VIEWER_DATASET}") String viewerDataset,
-                             @Value("${FRONTEND_PORT}") String frontendPort,
-                             @Value("${FUSEKI_USER}") String fusekiUser,
-                             @Value("${FUSEKI_PASSWORD}") String fusekiPassword) {
-        this.fusekiURL = fusekiURL;
-        this.ontologiesDataset =ontologiesDataset;
-        this.instancesDataset = instancesDataset;
+    @Autowired
+    private Owl2VowlService owl2VowlService;
+    @Autowired
+    private FusekiService fusekiService;
+
+    public OntologyService(@Value("${FRONTEND_PORT}") String frontendPort,
+                         @Value("${TICO_URL}") String ticoURL,
+                         @Value("${OWL2VOWL_URL}") String owl2vowlURL) {
+        this.ticoURL = ticoURL;
+        this.owl2vowlURL =owl2vowlURL;
         this.frontendPort = frontendPort;
-        this.fusekiUser = fusekiUser;
-        this.fusekiPassword = fusekiPassword;
-        this.viewerDataset = viewerDataset;
     }
 
-    public void createOntology(String IRI, CreateOntologyDTO ontologyContent){
-        // Insert ontology
-        RDFConnection conn0 = RDFConnectionRemote.newBuilder()
-                .destination(fusekiURL)
-                .updateEndpoint(ontologiesDataset)
-                .build();
+    public String getEvolutionaryActions(GetEvolutionaryActionsDTO ontologyContent) {
+        try{
+            HttpClient httpClient = HttpClient.newHttpClient();
+            JSONObject json = new JSONObject();
+            json.put("ontology", ontologyContent.ontology);
+            json.put("instance", ontologyContent.instance);
 
-        String auxOriginal = StringEscapeUtils.escapeJava(ontologyContent.originalOntology); ;
+            String inputString = json.toString();
 
-        String queryText = "PREFIX dcterms: <prefix1> \n" +
-        "INSERT DATA { <" + IRI + "> <version0> \"" + auxOriginal + "\" }";
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(ticoURL + "/evolactions"))
+                    .version(HttpClient.Version.HTTP_1_1)
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(inputString))
+                    .build();
 
-        UpdateRequest query = UpdateFactory.create(queryText);
-
-        conn0.update(query);
-        conn0.close();
-
-        // Insert viewer version
-        RDFConnection conn1 = RDFConnectionRemote.newBuilder()
-                .destination(fusekiURL)
-                .updateEndpoint(viewerDataset)
-                .build();
-
-        String auxViewer = StringEscapeUtils.escapeJava(ontologyContent.viewerVersion); ;
-
-        String queryViewerText = "PREFIX dcterms: <prefix1> \n" +
-                "INSERT DATA { <" + IRI + "> <version0> \"" + auxViewer + "\" }";
-
-        UpdateRequest queryViewer = UpdateFactory.create(queryViewerText);
-
-        conn1.update(queryViewer);
-        conn1.close();
-    }
-
-    public void createOntologyVersion(String IRI, CreateOntologyDTO ontologyContent){
-        AtomicReference<Integer> totalNumber = new AtomicReference<>(0);
-        RDFConnection conn0 = RDFConnectionRemote.newBuilder()
-                .destination(fusekiURL)
-                .queryEndpoint(ontologiesDataset)
-                .updateEndpoint(ontologiesDataset)
-                .build();
-
-
-        RDFConnection conn1 = RDFConnectionRemote.newBuilder()
-                .destination(fusekiURL)
-                .queryEndpoint(viewerDataset)
-                .updateEndpoint(viewerDataset)
-                .build();
-
-        String queryCountText = "SELECT (COUNT(*) as ?TotalNumber) WHERE { ?s ?p ?o FILTER( CONTAINS(str(?s) , \"" + IRI + "\" )) }";
-
-        conn0.querySelect(queryCountText, (qs) -> {
-            String totalNumberString = qs.getLiteral("TotalNumber").getString() ;
-            totalNumber.set(Integer.parseInt(totalNumberString));
-        });
-
-        if (totalNumber.get() > 0){
-            String version = "version" + (totalNumber.get());
-            String auxOriginal = StringEscapeUtils.escapeJava(ontologyContent.originalOntology);
-            String auxViewer = StringEscapeUtils.escapeJava(ontologyContent.viewerVersion);
-
-            String insertContentOriginal = "<" + IRI + "> <" + version + "> \"" + auxOriginal + "\"";
-            String insertContentViewer = "<" + IRI + "> <" + version + "> \"" + auxViewer + "\"";
-
-            String queryOriginalText = "PREFIX dcterms: <prefix1> \n" +
-                    "INSERT DATA {" + insertContentOriginal + "}";
-            String queryViewerText = "PREFIX dcterms: <prefix1> \n" +
-                    "INSERT DATA {" + insertContentViewer + "}";
-
-            UpdateRequest queryOriginal = UpdateFactory.create(queryOriginalText);
-            UpdateRequest queryViewer = UpdateFactory.create(queryViewerText);
-
-            conn0.update(queryOriginal);
-            conn1.update(queryViewer);
+            HttpResponse<String> httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            return httpResponse.body();
+        } catch (URISyntaxException | InterruptedException | IOException e) {
+            e.printStackTrace();
         }
 
-        conn0.close();
-        conn1.close();
+        return "[]";
+    }
+
+    public GetOntologyDTO createOntology(String IRI, CreateOntologyDTO ontologyContent) throws IOException, InterruptedException, URISyntaxException {
+        // get new version from TICO
+        HttpClient httpClient = HttpClient.newHttpClient();
+        JSONObject json = new JSONObject();
+        json.put("ontology", ontologyContent.ontology);
+        json.put("instance", ontologyContent.instance);
+        json.put("actions", ontologyContent.actions);
+
+        String inputString = json.toString();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(ticoURL + "/execute"))
+                .version(HttpClient.Version.HTTP_1_1)
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(inputString))
+                .build();
+
+        HttpResponse<String> executeResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        String executeResult = executeResponse.body(); //this is the new version!
+        //Now we need to get the viewer version, and save both to Fuseki
+        //Get viewer version
+        String viewerVersionOriginal = owl2VowlService.getViewerVersion(ontologyContent.ontology);
+        String viewerVersion = owl2VowlService.getViewerVersion(executeResult);
+        //Save to Fuseki
+        fusekiService.createOntology(IRI, ontologyContent.ontology, viewerVersionOriginal);
+        fusekiService.createOntologyVersion(IRI, executeResult, viewerVersion);
+        // if succeeds, save both versions and return new version
+        return new GetOntologyDTO(IRI, "2", viewerVersionOriginal, viewerVersion);
     }
 }

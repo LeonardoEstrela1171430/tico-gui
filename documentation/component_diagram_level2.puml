@@ -1,0 +1,28 @@
+@startuml
+
+
+  node WebApplication {
+
+  }
+
+  node TICO_API {
+
+  }
+
+  node TICO_Comparator {
+
+  }
+
+  node OWL2VOWL
+
+  database Fuseki
+
+WebApplication - Web
+  WebApplication -(0- TICO_API
+  TICO_API -(0- TICO_Comparator
+TICO_API -(0- OWL2VOWL
+TICO_API -(0- Fuseki
+
+
+
+@enduml

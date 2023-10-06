@@ -1,0 +1,11 @@
+
+@startuml
+actor User
+participant TicoGui as "TICO-GUI"
+
+alt Both Versions
+TicoGui --> User: Presents both versions of the ontology
+else Single Version
+TicoGui --> User: Presents a single version of the ontology on a larger screen
+end
+@enduml

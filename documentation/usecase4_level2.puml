@@ -1,0 +1,12 @@
+@startuml
+actor User
+participant TicoGui as "TICO-GUI"
+participant TicoApi as "TICO Backend"
+
+User -> TicoGui: Clicks on "Load Ontology"
+TicoGui -> TicoApi: Get Ontologies
+TicoApi --> TicoGui: return
+TicoGui --> User: Lists all Ontologies
+User -> TicoGui: Chooses Ontology
+TicoGui --> User: Visualization of Ontology
+@enduml

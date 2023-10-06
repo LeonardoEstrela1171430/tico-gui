@@ -1,0 +1,19 @@
+@startuml
+
+class EvolutionaryAction 
+interface ActionType {
+    execute()
+}
+
+TICO_GUI "1" -- "*" Viewer  : contains >
+Viewer -- Ontology: allows for visualization of >
+TICO_GUI -- Files: allows for submission of >
+Files -- Ontology: contains >
+Files -- Instance: contains >
+
+Files "1" -- "*" EvolutionaryAction: generates > 
+EvolutionaryAction "*" -- "1" Ontology: updates >
+EvolutionaryAction -|> ActionType
+EvolutionaryAction "1" -- "*" Property: has multiple >
+Property "1" -- "1" Viewer: can be updated by >
+@enduml

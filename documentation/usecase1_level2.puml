@@ -1,0 +1,14 @@
+@startuml
+actor User
+participant TicoGui as "TICO-GUI"
+participant TicoApi as "TICO Backend"
+
+TicoGui -> User: Prompts user to submit name and files
+User -> TicoGui : Inserts name
+User -> TicoGui : Inserts ontology file
+User -> TicoGui : Inserts instance file
+User -> TicoGui: Submits
+TicoGui -> TicoApi: Generate evolutionary actions
+TicoApi --> TicoGui: returns
+TicoGui -> User: Presents the Evolutionary Actions to the user to edit
+@enduml

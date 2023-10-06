@@ -1,0 +1,16 @@
+@startuml
+actor User
+participant TicoGui as "TICO-GUI"
+participant TicoApi as "TICO Backend"
+
+TicoGui -> User: Prompts user to edit the Evolutionary Actions
+loop N times
+User -> TicoGui: Edits or deletes an Evolutionary Action
+TicoGui --> User: Updates the view
+end
+
+User -> TicoGui: Finishes and submits
+TicoGui -> TicoApi: Execute Evolutionary Actions
+TicoApi --> TicoGui: Return both versions
+TicoGui --> User: Visualization of both versions
+@enduml

@@ -1,0 +1,17 @@
+@startuml
+actor User
+participant TicoGui as "TICO-GUI"
+participant TicoApi as "TICO-API"
+participant TicoMain as "TICO-Main"
+database Fuseki as "Fuseki"
+
+User -> TicoGui: Clicks on "Load Ontology"
+TicoGui -> TicoApi: Get Ontologies
+TicoApi -> Fuseki: Get Ontologies
+Fuseki --> TicoApi: return
+TicoApi --> TicoGui: return
+TicoGui --> User: Lists all Ontologies
+User -> TicoGui: Chooses Ontology
+TicoGui --> User: Visualization of Ontology
+
+@enduml
