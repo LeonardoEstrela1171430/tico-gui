@@ -793,11 +793,7 @@ webvowl.app =
 	      options.colorExternalsModule(colorExternalsSwitch);
 	      options.compactNotationModule(compactNotationSwitch);
 
-		  if(ontologyContent){
-			ontologyMenu.setup(loadOntologyFromText);
-		  }else {
-			ontologyMenu.setup(loadOntologyFromText);
-		  }
+		  ontologyMenu.setup(loadOntologyFromText);
 
 	      configMenu.setup();
 	      
@@ -891,7 +887,6 @@ webvowl.app =
 	  
 	  
 	  function loadOntologyFromText( jsonText, filename, alternativeFilename ){
-		debugger;
 	    d3.select("#reloadCachedOntology").classed("hidden", true);
 	    pauseMenu.reset();
 	    graph.options().navigationMenu().hideAllMenus();
@@ -8945,7 +8940,7 @@ webvowl.app =
 	    ontologyMenu.append_bulletPoint("Reading ontology graph ... ");
 	    var _loader = ontologyMenu.getLoadingFunction();
 		if(globalOntologyContent){
-			_loader(globalOntologyContent, ontologyIdentifierFromURL, "noAlternativeNameYet");
+			_loader(globalOntologyContent, globalIRI, "noAlternativeNameYet");
 		}else {
 			_loader(content, ontologyIdentifierFromURL, "noAlternativeNameYet");
 		}

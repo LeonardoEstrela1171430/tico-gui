@@ -153,6 +153,25 @@ public class FusekiService {
         return dto;
     }
 
+    //
+    public String getOntologyViewerVersionByIRI(String IRI, String version1){
+        GetOntologyDTO dto = new GetOntologyDTO();
+
+        RDFConnection conn1 = RDFConnectionRemote.newBuilder()
+                .destination(fusekiURL)
+                .queryEndpoint(viewerDataset)
+                .updateEndpoint(viewerDataset)
+                .build();
+
+        String queryTextViewerOriginal = "SELECT ?s ?p ?o WHERE { ?s ?p ?o FILTER( CONTAINS(str(?s) , \"" + IRI + "\" ) && CONTAINS(str(?p) , \"" + version1 + "\" ) ) }";
+        conn1.querySelect(queryTextViewerOriginal, (qs) -> {
+            dto.setOriginalOntology(qs.getLiteral("o").getString());
+        });
+
+        return dto.originalOntology;
+    }
+
+
     public GetOntologiesDTO getOntologies(){
         GetOntologiesDTO resultList = new GetOntologiesDTO();
         List<OntologyDTO> auxList = new ArrayList<>();

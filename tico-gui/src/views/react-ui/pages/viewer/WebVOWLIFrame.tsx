@@ -2,15 +2,14 @@ import React from "react";
 import { useEffect, useRef } from "react";
 
 interface WebVOWLProps {
-    height: string;
-    width: string;
     simplifiedVersion: boolean;
     ontology: string;
     iri: string;
     version: string;
+    large?: boolean;
 }
 
-function WebVOWLIFrame ({height, width, simplifiedVersion, ontology, iri, version}: WebVOWLProps) {
+function WebVOWLIFrame ({simplifiedVersion, ontology, iri, version, large}: WebVOWLProps) {
     const iframeRef: React.RefObject<HTMLIFrameElement> = React.createRef();
 
     useEffect(() => {
@@ -22,12 +21,10 @@ function WebVOWLIFrame ({height, width, simplifiedVersion, ontology, iri, versio
     
     return (
         <iframe 
-            className="webvowl-iframe"
+            className={large ? "webvowl-iframe-large" : "webvowl-iframe"}
             id="iframe1"
             ref={iframeRef}
             src="/webvowl/index.html"
-            height={height}
-            width={width}
         />
     );
         

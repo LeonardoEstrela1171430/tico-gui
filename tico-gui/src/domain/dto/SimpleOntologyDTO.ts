@@ -1,9 +1,7 @@
-export default class OntologyDTO {
+export default class SimpleOntologyDTO {
     public iri: string;
-    public versions: string[];
 
-    constructor(iri: string, versions: string[]){
+    constructor(iri: string){
         this.iri = iri;
-        this.versions = versions;
     }
 }

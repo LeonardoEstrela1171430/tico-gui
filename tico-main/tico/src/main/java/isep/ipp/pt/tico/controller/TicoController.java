@@ -24,7 +24,7 @@ public class TicoController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/evolactions")
-    public List<EvolutionaryAction> getOntologies(@RequestBody EvolutionaryActionsDTO dto) throws IOException {
+    public List<EvolutionaryAction> generateEvolutionaryActions(@RequestBody EvolutionaryActionsDTO dto) throws IOException {
         Configs.functional_threshold     = 50;
         Configs.subclass_threshold       = 100;
         Configs.equivalent_threshold     = 150;
@@ -43,7 +43,7 @@ public class TicoController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/execute")
-    public String getOntologies(@RequestBody ExecuteActionsDTO dto) throws IOException {
+    public String executeEvolutionaryActions(@RequestBody ExecuteActionsDTO dto) throws IOException {
         Configs.functional_threshold     = 50;
         Configs.subclass_threshold       = 100;
         Configs.equivalent_threshold     = 150;

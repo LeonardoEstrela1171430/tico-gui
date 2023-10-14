@@ -5,13 +5,12 @@ import com.ipp.isep.OntologyEvolutionAPI.dto.GetEvolutionaryActionsDTO;
 import com.ipp.isep.OntologyEvolutionAPI.dto.GetOntologiesDTO;
 import com.ipp.isep.OntologyEvolutionAPI.dto.GetOntologyDTO;
 import com.ipp.isep.OntologyEvolutionAPI.service.FusekiService;
-import com.ipp.isep.OntologyEvolutionAPI.service.OntologyService;
+import com.ipp.isep.OntologyEvolutionAPI.service.TicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.List;
 
 @RestController
 public class OntologyController {
@@ -19,7 +18,7 @@ public class OntologyController {
     @Autowired
     public FusekiService fusekiService;
     @Autowired
-    public OntologyService ontologyService;
+    public TicoService ticoService;
 
     @CrossOrigin(origins = "*")
     @GetMapping("/ontologies")
@@ -28,29 +27,28 @@ public class OntologyController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping("/ontologies/{IRI}/{version}")
-    public GetOntologyDTO getOntologyByID(@PathVariable String IRI, @PathVariable String version) throws IOException {
-        return fusekiService.getOntologyByIRIAndVersion(IRI, version);
+    @GetMapping("/ontologies/{IRI}/{v1}/{v2}")
+    public GetOntologyDTO getOntologyByID(@PathVariable String IRI, @PathVariable String v1, @PathVariable String v2) throws IOException {
+        GetOntologyDTO dto = new GetOntologyDTO();
+        String original = fusekiService.getOntologyViewerVersionByIRI(IRI, v1);
+        String updated = fusekiService.getOntologyViewerVersionByIRI(IRI, v2);
+
+        dto.setOriginalOntology(original);
+        dto.setViewerVersion(updated);
+        return dto;
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping("/ontologies/{IRI}")
     public GetOntologyDTO createOntology(@PathVariable String IRI, @RequestBody CreateOntologyDTO file) throws IOException, URISyntaxException, InterruptedException {
-        GetOntologyDTO aux = ontologyService.createOntology(IRI, file);
+        GetOntologyDTO aux = ticoService.createOntology(IRI, file);
         return aux;
-    }
-
-    @CrossOrigin(origins = "*")
-    @PutMapping("/ontologies/{IRI}")
-    public String createOntologyVersion(@PathVariable String IRI, @RequestBody CreateOntologyDTO file) throws IOException {
-        //ontologyService.createOntologyVersion(IRI, file);
-        return "Success";
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping("/evolactions")
     public String getEvolutionaryActions(@RequestBody GetEvolutionaryActionsDTO file) throws IOException {
-        String result = ontologyService.getEvolutionaryActions(file);
+        String result = ticoService.getEvolutionaryActions(file);
         return result;
     }
 

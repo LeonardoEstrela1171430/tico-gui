@@ -16,7 +16,6 @@ function App() {
       <div className="App">
         <NavBar />
         <Router>
-          <div>
             <Routes >
               <Route path="/" element={<Home />} />
               <Route path="/workspace" element={<ImportOntology />}/>
@@ -26,7 +25,6 @@ function App() {
               <Route path="/viewer" element={<EvolutionVisualization />}/>
               <Route path="/largeviewer" element={<LargeVisualization />}/>
             </Routes >
-          </div>
         </Router>   
       </div>
     </ChakraProvider>

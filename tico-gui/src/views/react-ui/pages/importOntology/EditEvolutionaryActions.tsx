@@ -1,9 +1,11 @@
-import { useState } from "react";
-import EvolutionaryActionDTO from "../../dto/EvolutionaryActionDTO";
+import { useEffect, useState } from "react";
+import EvolutionaryActionDTO from "../../../../domain/dto/EvolutionaryActionDTO";
 import { Box, Button, Center, Checkbox, Heading, Input } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
-import OntologyService from "../services/OntologyService";
+import OntologyService from "../../../../services/OntologyService";
 import LoadingPage from "../../modules/loadingPage";
+import { DeleteIcon } from "@chakra-ui/icons";
+import {v4 as uuidv4} from 'uuid';
 
 interface LocationState {
     ontology: string,
@@ -15,28 +17,27 @@ interface LocationState {
 function EditEvolutionaryActions() {
 
     const location = useLocation();
-    const { ontology, instance, actions, name } = location.state as LocationState; // Read values passed on state
+    const { ontology, instance, name, actions } = location.state as LocationState; // Read values passed on state
     const [isLoading, setIsLoading] = useState(false);    
     const navigate = useNavigate();
 
     const [evolActions, setEvolActions] = useState<EvolutionaryActionDTO[]>(actions);
 
-    const updateActionValue = (index: number, property: string, newValue: any) => {
+    const updateActionValue = (index: number, property: string, newValue: any, arrayIndex?: number) => {
+        debugger;
         let auxActions = [...evolActions];
-        auxActions[index][property] = newValue;
-        setEvolActions(auxActions);
-    }
-
-    const updateActionArrayValue = (index: number, property: string, propertyIndex: number, newValue: any) => {
-        let auxActions = [...evolActions];
-        auxActions[index][property] = newValue;
+        if(typeof(arrayIndex) === "number" && arrayIndex >= 0){
+            auxActions[index][property][arrayIndex] = newValue;
+        }else {
+            auxActions[index][property] = newValue;
+        }
         setEvolActions(auxActions);
     }
 
     const submit = () => {
         setIsLoading(true);
         const jsonActions = JSON.stringify(evolActions);
-        OntologyService.execute(name, ontology, instance, jsonActions).then(result => {
+        OntologyService.executeActions(name, ontology, instance, jsonActions).then(result => {
             setIsLoading(false);
             debugger;
             navigate("/viewer", {state: {iri: result.iri, version: result.version, originalOntology: result.originalOntology, viewerVersion: result.viewerVersion}});
@@ -45,6 +46,13 @@ function EditEvolutionaryActions() {
             alert("Could not execute actions. Please try again later.");
             console.log(error);
         })
+    }
+
+    const deletedAction = (index: number) => {
+        debugger;
+        let auxActions = [...evolActions];
+        auxActions.splice(index, 1);
+        setEvolActions(auxActions);
     }
 
     return (
@@ -60,14 +68,15 @@ function EditEvolutionaryActions() {
                 Execute
             </Button>
             {
-                actions.map((action, index) => {
+                evolActions.map((action, index) => {
                     const entries = Object.entries(action).filter(value => value[0] !== "className");
                     return (
-                        <Box maxW='lg' borderWidth='1px' borderRadius='lg' overflow='hidden' margin={"5px"}>
+                        <Box borderWidth='1px' borderRadius='lg' overflow='hidden' margin={"10px"}>
+                            <DeleteIcon className="deleteButton" onClick={() => deletedAction(index)} />
                             <Heading as='h4' size='md' noOfLines={1}>
                                 Action type: {action.className}
                             </Heading>
-                            <Heading as='h4' size='md' noOfLines={1}>
+                            <Heading as='h4' size='md' noOfLines={1} className="checkboxWrapper">
                                 Properties:
                             </Heading>
                             <br></br>
@@ -77,7 +86,7 @@ function EditEvolutionaryActions() {
                                         return (
                                             <>
                                                 <Center>
-                                                    {value[0]}:
+                                                    <div className="form-element-left">{value[0]} : </div>
                                                     <Input
                                                             type="number"
                                                             value={value[1]}
@@ -89,45 +98,49 @@ function EditEvolutionaryActions() {
                                         )
                                     }else if (typeof(value[1]) === "boolean"){
                                         return (
+                                            <div className="checkboxWrapper">
                                             <Checkbox
+                                            
                                                 isChecked={value[1]}
                                                 onChange={(e) => updateActionValue(index, value[0], !value[1])}
                                             >
                                                 {value[0]}
                                             </Checkbox>
+                                            </div>
                                         )
                                     } else if (Array.isArray(value[1])){
-                                        //TODO: this probably doesn't work yet
-                                        /* value[1].map((arrayValue, index) => {
+                                        return(
+                                        value[1].map((arrayValue, arrayIndex) => {
+                                            debugger;
                                             if(typeof(arrayValue) === "number"){
                                                 return (
                                                         <Center>
-                                                            {value[0]}:
+                                                            <div className="form-element-left">{value[0]} : </div>
                                                             <Input
                                                                     type="number"
-                                                                    value={value[1]}
-                                                                    onChange={(e) => updateActionValue(index, value[0], Number(e.target.value))}
+                                                                    value={arrayValue}
+                                                                    onChange={(e) => updateActionValue(index, value[0], Number(e.target.value), arrayIndex)}
                                                                     placeholder={value[0]}
                                                                 />
                                                         </Center>  
                                                 )
-                                            } else if (arrayValue === "boolean"){
+                                            } else if (typeof(arrayValue) === "boolean"){
                                                 return (
                                                     <Checkbox
                                                         isChecked={arrayValue}
-                                                        onChange={(e) => updateActionValue(index, value[0], !value[1])}
+                                                        onChange={(e) => updateActionValue(index, value[0], !value[1], arrayIndex)}
                                                     >
                                                         {value[0]}
                                                     </Checkbox>
                                                 )
-                                            }else if (arrayValue === "string"){
+                                            }else if (typeof(arrayValue) === "string"){
                                                 return (
                                                     <Center>
-                                                        {value[0]}:
+                                                        <div className="form-element-left">{value[0]} : </div>
                                                         <Input
                                                                 type="text"
-                                                                value={value[1]}
-                                                                onChange={(e) => updateActionValue(index, value[0], e.target.value)}
+                                                                value={arrayValue}
+                                                                onChange={(e) => updateActionValue(index, value[0], e.target.value, arrayIndex)}
                                                                 placeholder={value[0]}
                                                             />
                                                     </Center>  
@@ -136,12 +149,12 @@ function EditEvolutionaryActions() {
                                                 return null;
                                             }
                                             
-                                        })      */
-                                        return null;
+                                        }) )     
+                                        
                                     } else if (typeof(value[1]) === "string"){
                                         return (
                                             <Center>
-                                                {value[0]}:
+                                                <div className="form-element-left">{value[0]} : </div>
                                                 <Input
                                                         type="text"
                                                         value={value[1]}

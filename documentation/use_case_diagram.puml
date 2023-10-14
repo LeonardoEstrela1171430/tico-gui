@@ -7,6 +7,6 @@
 "Submit ontology information" as (Use)
 "Edit Evolutionary Actions" as (Use2)
 "Visualize ontology" as (Use3)
-"List all Ontologies" as (Use4)
+"Load ontology" as (Use4)
 
 @enduml
